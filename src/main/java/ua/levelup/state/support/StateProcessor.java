@@ -7,7 +7,7 @@ import ua.levelup.state.State;
 @Component("stateProcessor")
 public class StateProcessor {
     private State state;
-    private Model model;
+    private Session session;
 
     public StateProcessor() { }
 
@@ -23,13 +23,13 @@ public class StateProcessor {
         this.state = state;
     }
 
-    public Model getModel() {
-        return model;
+    public Session getSession() {
+        return session;
     }
 
     @Autowired
-    public void setModel(Model model) {
-        this.model = model;
+    public void setSession(Session session) {
+        this.session = session;
     }
 
     public void goNext(){

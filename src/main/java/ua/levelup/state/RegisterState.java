@@ -28,7 +28,7 @@ public class RegisterState extends State {
             String name = scanner.nextLine();  //Имя пользователя
             User user = new User(login, password, name, false);
             userService.register(user);
-            getProcessor().getModel().setUser(user);
+            getProcessor().getSession().setUser(user);
             getProcessor().setState(getStateHolder().getUserChoiceState());
         } else {
             getProcessor().setState(getStateHolder().getInitState());

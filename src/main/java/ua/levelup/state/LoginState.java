@@ -27,7 +27,7 @@ public class LoginState extends State {
             System.out.print("Password:");
             password = scanner.nextLine();  //Пароль, введенный пользователем
             User user = userService.login(login, password);
-            getProcessor().getModel().setUser(user);
+            getProcessor().getSession().setUser(user);
             if (user.isAdminStatus()) {
                 getProcessor().setState(getStateHolder().getAdminChoiceState());
             } else {

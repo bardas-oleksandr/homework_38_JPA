@@ -4,13 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//В @NamedQuery, и в целом в HQL, надо использовать фактические имена классов и полей, в не названия таблиц и столбцов
 @Entity
 @Table(name="USERS")
-@NamedQueries({
-        @NamedQuery(name="User.findByLogin",
-        query="select distinct u from User u where u.login = :login")
-})
 public class User {
     private String login;
     private String password;

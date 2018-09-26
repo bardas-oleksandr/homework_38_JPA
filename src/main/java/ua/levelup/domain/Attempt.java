@@ -8,13 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "attempts")
-@NamedQueries({@NamedQuery(name = "Attempt.getAllForUser",
-        query = "select distinct a from Attempt a where a.user = :user"),
-        @NamedQuery(name = "Attempt.getLastForUser",
-                query = "select distinct a from Attempt a where a.user = :user order by a.date desc"),
-        @NamedQuery(name="Attempt.getWithAnswers",
-                query="select distinct a from Attempt a left join fetch a.givenAnswerList where a.id = :id")
-})
 public class Attempt {
     private int id;
     private User user;

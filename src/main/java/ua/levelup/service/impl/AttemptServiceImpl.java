@@ -37,16 +37,13 @@ public class AttemptServiceImpl implements AttemptService {
 
     @Override
     public Attempt getLastAttempt(User user) {
-        return attemptRepository.findLastByUser(user);
-    }
-
-    @Override
-    public void initializeGivenAnswerList(Attempt attempt) {
-        Optional<Attempt> retrieved = attemptRepository.findById(attempt.getId());
-        if(retrieved.isPresent()){
-            attempt.setGivenAnswerList(retrieved.get().getGivenAnswerList());
+        List<Attempt> list = attemptRepository.findByUserWithAnswers(user);
+        Optional<Attempt> attempt = list.stream()
+                .max((first, second)->(int)(first.getDate().getTime() - second.getDate().getTime()));
+        if(attempt.isPresent()){
+            return attempt.get();
         }else{
-            throw new ApplicationException("Question doesn't exist");
+            throw new ApplicationException("Attempt doesn't exist");
         }
     }
 }

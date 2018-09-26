@@ -6,8 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name="TOPICS")
-@NamedQueries({@NamedQuery(name="Topic.findAllWithQuestions",
-        query="select distinct t from Topic t left join fetch t.questionList")})
 public class Topic {
     private int id;
     private String topicName;

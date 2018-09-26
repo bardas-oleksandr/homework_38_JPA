@@ -39,7 +39,7 @@ public class PassTestState extends State {
         double result = (((double) correctAnswers) / givenAnswerList.size()) * 100;
 
         //Записываем результат прохождения теста в историю
-        User user = getProcessor().getModel().getUser();
+        User user = getProcessor().getSession().getUser();
         attempt.setUser(user);
         attempt.setDate(new Date(System.currentTimeMillis()));
         attempt.setResult(result);
@@ -54,17 +54,9 @@ public class PassTestState extends State {
         getProcessor().setState(getStateHolder().getUserChoiceState());
     }
 
-    public UserService getUserService() {
-        return userService;
-    }
-
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }
-
-    public AttemptService getAttemptService() {
-        return attemptService;
     }
 
     @Autowired
@@ -72,17 +64,9 @@ public class PassTestState extends State {
         this.attemptService = attemptService;
     }
 
-    public TopicService getTopicService() {
-        return topicService;
-    }
-
     @Autowired
     public void setTopicService(TopicService topicService) {
         this.topicService = topicService;
-    }
-
-    public QuestionService getQuestionService() {
-        return questionService;
     }
 
     @Autowired

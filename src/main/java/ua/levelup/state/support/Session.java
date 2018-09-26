@@ -6,12 +6,12 @@ import ua.levelup.domain.User;
 
 import java.util.List;
 
-@Component("model")
-public class Model {
+@Component("session")
+public class Session {
     private User user;
     private List<Topic> topicList;
 
-    public Model() { }
+    public Session() { }
 
     public User getUser() {
         return user;

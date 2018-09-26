@@ -16,7 +16,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <spring.version>4.3.19.RELEASE</spring.version>
     <hibernate.entitymanager.version>5.1.0.Final</hibernate.entitymanager.version>
-    <log4j.version>2.6.1</log4j.version>
+    <log4j2.version>2.6.1</log4j2.version>
     <h2.version>1.4.197</h2.version>
     <google.guava.version>26.0-jre</google.guava.version>
   </properties>
@@ -55,20 +55,16 @@
     </dependency>
 
 
-
-
-
-
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-      <version>${log4j.version}</version>
+      <version>${log4j2.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
-      <version>${log4j.version}</version>
+      <version>${log4j2.version}</version>
     </dependency>
 
     <dependency>

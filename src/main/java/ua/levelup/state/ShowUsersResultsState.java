@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.levelup.domain.Attempt;
 import ua.levelup.domain.GivenAnswer;
+import ua.levelup.exception.ApplicationException;
 import ua.levelup.service.AttemptService;
 import ua.levelup.util.AppUtil;
 
@@ -50,26 +51,29 @@ public class ShowUsersResultsState extends State {
     }
 
     private void showLast() {
-        //Покажем детальную картину последнего прохождения теста
-        //Выберем общую информацию о попытках сдачи (время и результат)
-        Attempt attempt = attemptService.getLastAttempt(getProcessor().getModel().getUser());
-        attemptService.initializeGivenAnswerList(attempt);
+        try {
+            //Покажем детальную картину последнего прохождения теста
+            //Выберем общую информацию о попытках сдачи (время и результат)
+            Attempt attempt = attemptService.getLastAttempt(getProcessor().getSession().getUser());
 
-        //Общая информация по последнему тесту
-        System.out.println("===========================GENERAL INFORMATION==================================");
-        System.out.println(attempt);
+            //Общая информация по последнему тесту
+            System.out.println("===========================GENERAL INFORMATION==================================");
+            System.out.println(attempt);
 
-        //Покажем детали прохождения выбраного теста
-        System.out.println("===========================DETAILS==============================================");
-        List<GivenAnswer> givenAnswerList = attempt.getGivenAnswerList();
-        for (GivenAnswer answer : givenAnswerList) {
-            System.out.println(answer);
-            System.out.println("--------------------------------------------------------------------------------");
+            //Покажем детали прохождения выбраного теста
+            System.out.println("===========================DETAILS==============================================");
+            List<GivenAnswer> givenAnswerList = attempt.getGivenAnswerList();
+            for (GivenAnswer answer : givenAnswerList) {
+                System.out.println(answer);
+                System.out.println("--------------------------------------------------------------------------------");
+            }
+        } catch (ApplicationException e) {
+            System.out.println("History is empty");
         }
     }
 
     private void showAll() {
-        List<Attempt> attemptList = attemptService.getUsersResults(getProcessor().getModel().getUser());
+        List<Attempt> attemptList = attemptService.getUsersResults(getProcessor().getSession().getUser());
         System.out.println("===========================YOUR RESULTS========================================");
         for (Attempt attempt : attemptList) {
             System.out.println(attempt);

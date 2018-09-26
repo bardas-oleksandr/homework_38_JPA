@@ -9,5 +9,4 @@ public interface AttemptService {
     void addNewTest(Attempt attempt);
     List<Attempt> getUsersResults(User user);
     Attempt getLastAttempt(User user);
-    void initializeGivenAnswerList(Attempt attempt);
 }

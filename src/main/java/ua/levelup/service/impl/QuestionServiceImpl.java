@@ -30,11 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void initializeAnswerList(Question question){
-        Optional<Question> retrieved = questionRepository.findById(question.getId());
-        if(retrieved.isPresent()){
-            question.setAnswerList(retrieved.get().getAnswerList());
-        }else{
-            throw new ApplicationException("Question doesn't exist");
-        }
+        Question retrieved = questionRepository.findWithAnswers(question.getId());
+        question.setAnswerList(retrieved.getAnswerList());
     }
 }

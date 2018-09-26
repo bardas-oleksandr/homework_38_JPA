@@ -34,6 +34,6 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> getAllWithQuestions() {
-        return Lists.newArrayList(topicRepository.findAll());
+        return topicRepository.findAllWithQuestions();
     }
 }
