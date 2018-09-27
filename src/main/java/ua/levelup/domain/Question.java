@@ -1,27 +1,42 @@
 package ua.levelup.domain;
 
-import org.hibernate.annotations.Type;
-import org.springframework.data.domain.Auditable;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
-@Table(name="QUESTIONS")
-public class Question implements Auditable<String,Integer,LocalDateTime> {
+@Table(name = "QUESTIONS")
+@EntityListeners(AuditingEntityListener.class)
+public class Question {
     private int id;
     private String question;
     private Topic topic;
     private List<Answer> answerList;
-    private String createdBy;
-    private LocalDateTime createdDate;
-    private String lastModifiedBy;
-    private LocalDateTime lastModifiedDate;
 
-    public Question() { }
+    @Column(name = "CREATED_BY")
+    @CreatedBy
+    private String createdBy;
+
+    @Column(name = "CREATED_DATE")
+    @CreatedDate
+    private long createdDate;
+
+    @Column(name = "LAST_MODIFIED_BY")
+    @LastModifiedBy
+    private String lastModifiedBy;
+
+    @Column(name = "LAST_MODIFIED_DATE")
+    @LastModifiedDate
+    private long lastModifiedDate;
+
+    public Question() {
+    }
 
     public Question(Topic topic, String question) {
         this.topic = topic;
@@ -38,15 +53,9 @@ public class Question implements Auditable<String,Integer,LocalDateTime> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID")
+    @Column(name = "ID")
     public Integer getId() {
         return id;
-    }
-
-    @Transient
-    @Override
-    public boolean isNew() {
-        return id == 0;
     }
 
     public void setId(int id) {
@@ -54,7 +63,7 @@ public class Question implements Auditable<String,Integer,LocalDateTime> {
     }
 
     @ManyToOne
-    @JoinColumn(name="TOPIC_ID")
+    @JoinColumn(name = "TOPIC_ID")
     public Topic getTopic() {
         return topic;
     }
@@ -63,7 +72,7 @@ public class Question implements Auditable<String,Integer,LocalDateTime> {
         this.topic = topic;
     }
 
-    @Column(name="QUESTION")
+    @Column(name = "QUESTION")
     public String getQuestion() {
         return question;
     }
@@ -83,55 +92,39 @@ public class Question implements Auditable<String,Integer,LocalDateTime> {
         this.answerList = answerList;
     }
 
-    public void addAnswer(Answer answer){
+    public void addAnswer(Answer answer) {
         this.answerList.add(answer);
     }
 
-    @Column(name="CREATED_BY")
-    @Type(type="java.lang.String")
-    @Override
-    public Optional<String> getCreatedBy() {
-        return null;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    @Override
-    public void setCreatedBy(String login) {
-
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    @Column(name="CREATED_DATE")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @Override
-    public Optional<LocalDateTime> getCreatedDate() {
-        return null;
+    public long getCreatedDate() {
+        return createdDate;
     }
 
-    @Override
-    public void setCreatedDate(LocalDateTime localDateTime) {
-
+    public void setCreatedDate(long createdDate) {
+        this.createdDate = createdDate;
     }
 
-    @Column(name="LAST_MODIFIED_BY")
-    @Type(type="java.lang.String")
-    @Override
-    public Optional<String> getLastModifiedBy() {
-        return null;
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
-    @Override
-    public void setLastModifiedBy(String login) {
-
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 
-    @Column(name="LAST_MODIFIED_DATE")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @Override
-    public Optional<LocalDateTime> getLastModifiedDate() {
-        return null;
+    public long getLastModifiedDate() {
+        return lastModifiedDate;
     }
 
-    @Override
-    public void setLastModifiedDate(LocalDateTime localDateTime) {
-
+    public void setLastModifiedDate(long lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 }

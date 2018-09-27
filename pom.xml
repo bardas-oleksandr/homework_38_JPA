@@ -14,10 +14,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <spring.version>4.3.19.RELEASE</spring.version>
-    <hibernate.entitymanager.version>5.1.0.Final</hibernate.entitymanager.version>
+
+    <spring.version>5.1.0.RELEASE</spring.version>
+    <spring.data.jpa.version>2.1.0.RELEASE</spring.data.jpa.version>
+    <hibernate.entitymanager.version>5.1.16.Final</hibernate.entitymanager.version>
+    <jpa.version>1.0.2.Final</jpa.version>
     <log4j2.version>2.6.1</log4j2.version>
     <h2.version>1.4.197</h2.version>
+
     <google.guava.version>26.0-jre</google.guava.version>
     <usertype.version>6.0.1.GA</usertype.version>
   </properties>
@@ -27,7 +31,19 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
-      <version>2.1.0.RELEASE</version>
+      <version>${spring.data.jpa.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>${jpa.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate.entitymanager.version}</version>
     </dependency>
 
     <!--Зависимость для работы с коллекциями. Lists.newArrayList() отсюда -->
@@ -46,13 +62,6 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-
-    <!--Это нужно для аудита-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
       <version>${spring.version}</version>
     </dependency>
 
