@@ -19,6 +19,7 @@
     <log4j2.version>2.6.1</log4j2.version>
     <h2.version>1.4.197</h2.version>
     <google.guava.version>26.0-jre</google.guava.version>
+    <usertype.version>6.0.1.GA</usertype.version>
   </properties>
 
   <dependencies>
@@ -48,12 +49,31 @@
       <version>${spring.version}</version>
     </dependency>
 
+    <!--Это нужно для аудита-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!--Это нужно для аудита-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jadira.usertype</groupId>
+      <artifactId>usertype.core</artifactId>
+      <version>${usertype.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
       <version>${hibernate.entitymanager.version}</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
@@ -72,6 +92,7 @@
       <artifactId>h2</artifactId>
       <version>${h2.version}</version>
     </dependency>
+
   </dependencies>
 
   <build>
