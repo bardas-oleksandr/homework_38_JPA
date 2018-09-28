@@ -1,10 +1,15 @@
 package ua.levelup;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ua.levelup.domain.Question;
+import ua.levelup.repository.QuestionRepository;
+import ua.levelup.service.QuestionService;
 import ua.levelup.state.FinalState;
 import ua.levelup.state.State;
 import ua.levelup.state.support.StateProcessor;
 import ua.levelup.util.AppUtil;
+
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {

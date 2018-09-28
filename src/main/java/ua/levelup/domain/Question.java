@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,21 +20,19 @@ public class Question {
     private Topic topic;
     private List<Answer> answerList;
 
-    @Column(name = "CREATED_BY")
     @CreatedBy
     private String createdBy;
 
-    @Column(name = "CREATED_DATE")
     @CreatedDate
-    private long createdDate;
+    @Temporal(TemporalType.DATE)
+    private Date createdDate;
 
-    @Column(name = "LAST_MODIFIED_BY")
     @LastModifiedBy
     private String lastModifiedBy;
 
-    @Column(name = "LAST_MODIFIED_DATE")
     @LastModifiedDate
-    private long lastModifiedDate;
+    @Temporal(TemporalType.DATE)
+    private Date lastModifiedDate;
 
     public Question() {
     }
@@ -104,11 +103,11 @@ public class Question {
         this.createdBy = createdBy;
     }
 
-    public long getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(long createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -120,11 +119,11 @@ public class Question {
         this.lastModifiedBy = lastModifiedBy;
     }
 
-    public long getLastModifiedDate() {
+    public Date getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(long lastModifiedDate) {
+    public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 }

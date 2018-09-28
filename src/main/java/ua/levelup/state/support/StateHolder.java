@@ -15,6 +15,7 @@ public class StateHolder {
     private State loginState;
     private State passTestState;
     private State registerState;
+    private State showQuestionsState;
     private State showUsersResultsState;
 
     public StateHolder() {
@@ -108,5 +109,14 @@ public class StateHolder {
     @Autowired
     public void setAdminChoiceState(State adminChoiceState) {
         this.adminChoiceState = adminChoiceState;
+    }
+
+    public State getShowQuestionsState() {
+        return showQuestionsState;
+    }
+
+    @Autowired
+    public void setShowQuestionsState(State showQuestionsState) {
+        this.showQuestionsState = showQuestionsState;
     }
 }
